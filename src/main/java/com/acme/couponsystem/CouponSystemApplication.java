@@ -1,6 +1,7 @@
 package com.acme.couponsystem;
 
 import com.acme.couponsystem.db.storage.StorageConfig;
+import com.acme.couponsystem.service.task.DefaultAdminConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableScheduling
 @SpringBootApplication
-@EnableConfigurationProperties(StorageConfig.class)
+@EnableConfigurationProperties({StorageConfig.class, DefaultAdminConfig.class})
 public class CouponSystemApplication {
 
 	public static void main(String[] args) {
