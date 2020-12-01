@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  acs-mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=#octurn3
+      - MYSQL_DATABASE=acme-coupon-universe-system
+      - MYSQL_USER=root
+    ports:
+      - 3306:3306
+
+  acs-main:
+    image: acme-coupon-system
+    restart: on-failure
+    depends_on:
+      - acs-mysql
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://acs-mysql/acme-coupon-universe-system?serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=#octurn3
+      - SERVER_PORT=8080
+      - ACCOUNT_DEFAULT_ADMIN_EMAIL=admin123@acme.com
+      - ACCOUNT_DEFAULT_ADMIN_PASSWORD=123456
