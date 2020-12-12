@@ -21,6 +21,10 @@ public class Category implements Updateable<Category> {
     @Field
     @Column(nullable = false)
     private String name;
+    @NotNull
+    @Field
+    @Column(nullable = false)
+    private String description;
     @JsonIgnore
     @ContainedIn
     @OneToMany(mappedBy = "category")
@@ -54,10 +58,21 @@ public class Category implements Updateable<Category> {
         this.couponsOfCategory = couponsOfCategory;
     }
 
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
     @Override
     public void update (Updateable<? extends Category> updateable){
         Category category = (Category) updateable;
         if (null != category.name) name = category.name;
+        if (null != category.description) description = category.description;
     }
 
     @Override
